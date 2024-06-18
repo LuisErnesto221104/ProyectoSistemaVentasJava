@@ -1,0 +1,117 @@
+create database bd_sistema_ventas;
+
+CREATE TABLE tb_cabecera_compra (
+    idCabeceraCompra int(11) NOT NULL AUTO_INCREMENT,
+    Folio int(11) NOT NULL,
+    valorPagar double(10, 2) NOT NULL,
+    fechaCompra date NOT NULL,
+    horaCompra varchar(255) NOT NULL,
+    PRIMARY KEY (idCabeceraCompra)
+);
+
+CREATE TABLE tb_cabecera_venta (
+    idCabeceraVenta int(11) NOT NULL AUTO_INCREMENT,
+    idCliente int(11) NOT NULL,
+    valorPagar double(10, 2) NOT NULL,
+    fechaVenta date NOT NULL,
+    PRIMARY KEY (idCabeceraVenta)
+);
+
+CREATE TABLE tb_categoria (
+    idCategoria int(11) NOT NULL AUTO_INCREMENT,
+    descripcion varchar(200) NOT NULL,
+    PRIMARY KEY (idCategoria)
+);
+
+CREATE TABLE tb_cliente (
+    idCliente int(11) NOT NULL AUTO_INCREMENT,
+    nombre varchar(30) NOT NULL,
+    apellidoPaterno varchar(30) NOT NULL,
+    apellidoMaterno varchar(30) NOT NULL,
+    curp varchar(18) NOT NULL,
+    telefono varchar(15) NOT NULL,
+    tipoTarjeta varchar(50) NOT NULL,
+    numTarjeta varchar(16) NOT NULL,
+    numCasa int(3) NOT NULL,
+    calle varchar(50) NOT NULL,
+    colonia varchar(50) NOT NULL,
+    PRIMARY KEY (idCliente)
+); 
+
+CREATE TABLE tb_detalle_compra (
+    idDetalleCompra int(11) NOT NULL AUTO_INCREMENT,
+    idCabeceraCompra int(11) NOT NULL,
+    idProducto int(11) NOT NULL,
+    cantidad int(11) NOT NULL,
+    precioUnitario double(10, 2) NOT NULL,
+    subtotal double(10, 2) NOT NULL,
+    descuento double(10, 2) NOT NULL,
+    iva double(10, 2) NOT NULL,
+    totalPagar double(10, 2) NOT NULL,
+    PRIMARY KEY (idDetalleCompra)
+);
+
+CREATE TABLE tb_detalle_venta (
+    idDetalleVenta int(11) NOT NULL AUTO_INCREMENT,
+    idCabeceraVenta int(11) NOT NULL,
+    idProducto int(11) NOT NULL,
+    cantidad int(11) NOT NULL,
+    precioUnitario double(10, 2) NOT NULL,
+    subtotal double(10, 2) NOT NULL,
+    descuento double(10, 2) NOT NULL,
+    iva double(10, 2) NOT NULL,
+    totalPagar double(10, 2) NOT NULL,
+    PRIMARY KEY (idDetalleVenta)
+);
+
+CREATE TABLE tb_producto (
+    idProducto int(11) NOT NULL AUTO_INCREMENT,
+    codbarras varchar(13) NOT NULL,
+    nombre varchar(100) NOT NULL,
+    marca varchar(100) NOT NULL,
+    contenido varchar(100) NOT NULL,
+    unidadMedida varchar(100) NOT NULL,
+    cantidad int(11) NOT NULL,
+    precio double(10, 2) NOT NULL,
+    descripcion varchar(200) NOT NULL,
+    porcentajeIva int(2) NOT NULL,
+    idCategoria int(11) NOT NULL,
+    presentacion varchar(100) NOT NULL,
+    fechacaducidad date NOT NULL,
+    PRIMARY KEY (idProducto)
+);
+
+CREATE TABLE tb_propietario (
+    idPropietario int(11) NOT NULL AUTO_INCREMENT,
+    nombre varchar(30) NOT NULL,
+    telefono varchar(10) NOT NULL,
+    direccion varchar(30) NOT NULL,
+    razonsocial varchar(30) NOT NULL,
+    PRIMARY KEY (idPropietario)
+);
+
+CREATE TABLE tb_usuario (
+    idUsuario int(11) NOT NULL AUTO_INCREMENT,
+    nombre varchar(30) NOT NULL,
+    apellidoPaterno varchar(30) NOT NULL,
+    apellidoMaterno varchar(30) NOT NULL,
+    usuario varchar(15) NOT NULL,
+    password varchar(15) NOT NULL,
+    telefono varchar(15) NOT NULL,
+    PRIMARY KEY (idUsuario)
+);
+
+CREATE TABLE tb_provedor (
+    idprovedor int(11) NOT NULL AUTO_INCREMENT,
+    rfc varchar(25) NOT NULL,
+    razonsocial varchar(50) NOT NULL,
+    numcasa int(11) NOT NULL,
+    calle varchar(50) NOT NULL,
+    orientacion varchar(50) NOT NULL,
+    colonia varchar(50) NOT NULL,
+    ciudad varchar(50) NOT NULL,
+    estadoo varchar(50) NOT NULL,
+    cp varchar(5) NOT NULL,
+    telefono varchar(15) NOT NULL,
+    PRIMARY KEY (idprovedor)
+);
